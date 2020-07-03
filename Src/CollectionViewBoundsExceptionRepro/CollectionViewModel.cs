@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -12,7 +10,7 @@ namespace CollectionViewBoundsExceptionRepro
     class CollectionViewModel : INotifyPropertyChanged
     {
         bool _isRefreshing;
-        IList<int>? _scoreCollectionList;
+        IEnumerable<int>? _scoreCollectionList;
 
         public CollectionViewModel()
         {
@@ -23,9 +21,9 @@ namespace CollectionViewBoundsExceptionRepro
 
         public ICommand PopulateCollectionCommand { get; }
 
-        public IList<int> ScoreCollectionList
+        public IEnumerable<int> ScoreCollectionList
         {
-            get => _scoreCollectionList ??= Enumerable.Empty<int>().ToList();
+            get => _scoreCollectionList ??= Enumerable.Empty<int>();
             set
             {
                 _scoreCollectionList = value;
@@ -46,7 +44,11 @@ namespace CollectionViewBoundsExceptionRepro
             }
         }
 
-        void ExecuteRefreshCommand() => ScoreCollectionList = Enumerable.Range(0, 100).ToList();
+        void ExecuteRefreshCommand()
+        {
+            ScoreCollectionList = Enumerable.Range(0, 100).ToList();
+            IsRefreshing = false;
+        }
 
         void OnPropertyChanged([CallerMemberName] string propertyName = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

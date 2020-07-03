@@ -9,15 +9,14 @@ namespace CollectionViewBoundsExceptionRepro
         {
             BindingContext = new CollectionViewModel();
 
-            var collectionView = new CollectionView
-            {
-                ItemTemplate = new GreenBoxDataTemplate(),
-                Footer = new BoxView { BackgroundColor = Color.Red, HeightRequest = 53 }
-            }.Bind(CollectionView.ItemsSourceProperty, nameof(CollectionViewModel.ScoreCollectionList));
-
             Content = new RefreshView
             {
-                Content = collectionView
+                Content = new CollectionView
+                {
+                    ItemTemplate = new GreenBoxDataTemplate(),
+                    Footer = new BoxView { BackgroundColor = Color.Red, HeightRequest = 53 }
+                }.Bind(CollectionView.ItemsSourceProperty, nameof(CollectionViewModel.ScoreCollectionList))
+
             }.Bind(RefreshView.CommandProperty, nameof(CollectionViewModel.PopulateCollectionCommand))
              .Bind(RefreshView.IsRefreshingProperty, nameof(CollectionViewModel.IsRefreshing));
         }
