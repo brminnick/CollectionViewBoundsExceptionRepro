@@ -23,6 +23,8 @@ Downgrade to Xamarin.Forms v4.7.0.937-pre4
 
 Set `CollectionView.Footer = null`
 
+1. In `CollectionViewPage.cs`, change `Footer = new BoxView { BackgroundColor = Color.Red, HeightRequest = 53 }` to `Footer = null`
+
 https://github.com/brminnick/CollectionViewBoundsExceptionRepro/blob/8a6636d7af57f289113e800cfa0d0160cad78d6d/Src/CollectionViewBoundsExceptionRepro/CollectionViewPage.cs#L17
 
 #### Option #3. Replace `IEnumerable<int>` with `ObservableCollection<int>`
