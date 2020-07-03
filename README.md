@@ -13,19 +13,19 @@ Objective-C exception thrown.  Name: NSRangeException Reason: *** -[__NSArrayM o
 3. In Visual Studio, buld/deploy `CollectionViewBoundsExceptionRepro.iOS` to an iOS Simulator or Device 
 4. Confirm `NSRangeException` is thrown on launch
 
-### Work Arounds
+## Work Arounds
 
-### Option #1. Downgrade Xamarin.Forms
+#### Option #1. Downgrade Xamarin.Forms
 
 Downgrade to Xamarin.Forms v4.7.0.937-pre4
 
-### Option #2. Remove CollectionView.Footer
+#### Option #2. Remove CollectionView.Footer
 
 Set `CollectionView.Footer = null`
 
 https://github.com/brminnick/CollectionViewBoundsExceptionRepro/blob/8a6636d7af57f289113e800cfa0d0160cad78d6d/Src/CollectionViewBoundsExceptionRepro/CollectionViewPage.cs#L17
 
-### Option #3. Replace `IEnumerable<int>` with `ObservableCollection<int>`
+#### Option #3. Replace `IEnumerable<int>` with `ObservableCollection<int>`
 
 1. In `CollectionViewModel.cs`, remove `public IEnumerable<int> ScoreCollectionList`
 2. In `CollectionViewModel.cs`, remove `IEnumerable<int>? _scoreCollectionList;`
