@@ -46,7 +46,7 @@ namespace CollectionViewBoundsExceptionRepro
 
         void ExecuteRefreshCommand()
         {
-            ScoreCollectionList = Enumerable.Range(0, 100).ToList();
+            ScoreCollectionList = Enumerable.Range(0, 100);
             IsRefreshing = false;
         }
 
